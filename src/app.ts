@@ -9,6 +9,14 @@ export const init = async () => {
 
 	routes(server);
 
+	server.route({
+		method: '*',
+		path: '/{any*}',
+		handler: function(_request, _h) {
+			return '404 Error! Page Not Found!';
+		},
+	});
+
 	await server.start();
 	console.log(`Server running on: ${server.info.uri}`);
 };
